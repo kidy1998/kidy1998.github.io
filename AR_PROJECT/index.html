@@ -126,7 +126,7 @@ header .menuList li a {
 }
 
   #videoInput {
-    width: 70%;
+    width: 80%;
     height: 100%;
     position: absolute;
   }
@@ -504,6 +504,7 @@ header .menuList li a {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js"></script>
+
 
 <script type="module">
 import { site } from './siteconfig.js'
@@ -3215,7 +3216,7 @@ document.addEventListener('DOMContentLoaded', async function(e) {
 </head>
 
 
-
+  
 
 <body class="theme-dark">
 
@@ -3227,14 +3228,17 @@ document.addEventListener('DOMContentLoaded', async function(e) {
         <li><a href="main.html">Home</a></li>
         <li><a href="createAvatar.html">Create</a></li>
         <li><a href="index.html">Load</a></li>
+      
       </ul>
     </div>
   </header>
 
+  
+
   <div id="main" class="ratio-wide layout-land presence-video">
 
   
-    <video id="videoInput" width="100%"></video>
+    <video id="videoInput"></video>
 
     <div id="left" class="noselect nodrag" style="width: 55%;">
 
@@ -4223,12 +4227,12 @@ document.addEventListener('DOMContentLoaded', async function(e) {
     </div>
 
 
-    <div id="bottom" style="width: 33.3%; margin-left: 30%; height: 18%;">
+    <div id="bottom" style="width: 33.3%; margin-left : 30%; height: 18%;">
       <div class="pages noselect nodrag">
 
         <div class="page fill">
           <div class="row fill">
-            <textarea id="input" class="starttransparent"  data-i18n-placeholder="input" autocapitalize="sentences"></textarea>
+            <textarea id="input" class="starttransparent"  data-i18n-placeholder="this part is not completed, so do not enter any sentences" autocapitalize="sentences"></textarea>
           </div>
         </div>
 
