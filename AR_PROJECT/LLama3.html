@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLaMA 3 Text Generation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #response { white-space: pre-wrap; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>LLaMA 3 Text Generation</h1>
+    <label for="prompt">Enter your prompt:</label><br>
+    <textarea id="prompt" rows="4" cols="50"></textarea><br>
+    <button onclick="generateText()">Generate Text</button>
+    <div id="response"></div>
+
+   
+</body>
+
+
+<script>
+    async function generateText() {
+    const prompt = document.getElementById('prompt').value;
+    const responseDiv = document.getElementById('response');
+    responseDiv.textContent = 'Generating...';
+
+    const body = JSON.stringify({
+        model: "llama3",
+        prompt: prompt
+    });
+
+    try {
+        const response = await fetch('http://localhost:11434/api/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: body
+        });
+
+        if (response.ok) {
+            const text = await response.text();
+            console.log('Raw response text:', text);
+
+            // 여러 개의 JSON 객체를 줄 단위로 분리
+            const lines = text.split('\n').filter(line => line.trim() !== '');
+            let fullResponse = '';
+
+            for (const line of lines) {
+                try {
+                    const data = JSON.parse(line);
+                    fullResponse += data.response;
+                } catch (jsonError) {
+                    console.error('JSON parsing error:', jsonError, 'Line:', line);
+                    responseDiv.textContent = `Error: Invalid JSON response. Raw response text: ${text}`;
+                    return;
+                }
+            }
+
+            responseDiv.textContent = fullResponse;
+        } else {
+            const errorText = await response.text(); // 에러 메시지를 텍스트로 출력
+            responseDiv.textContent = `Error: ${response.status} ${response.statusText} - ${errorText}`;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        responseDiv.textContent = 'An error occurred. Please try again.';
+    }
+}
+
+
+</script>
+</html>

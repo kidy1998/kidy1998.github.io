@@ -126,8 +126,8 @@ header .menuList li a {
 }
 
   #videoInput {
-    width: 80%;
-    height: 100%;
+    width: 90%;
+    height: 80%;
     position: absolute;
   }
 
@@ -1401,6 +1401,9 @@ async function openaiModerateMessage(msgs) {
 
 // Send messages to OpenAI API and handle streamed response
 async function openaiSendMessage(node, msgs) {
+
+  console.log("node : ", node);
+  console.log("msgs : ", msgs);
   aiController = new AbortController();
   const signal = aiController.signal;
 
@@ -2483,7 +2486,7 @@ document.addEventListener('DOMContentLoaded', async function(e) {
         if ( cfg('ai-model').startsWith("gpt") ) {
           const m = openaiBuildMessage();
           let flag = await openaiModerateMessage(m);
-
+          console.log("gpt 모델 사용");
           const nodeInput = addMessage(true);
           nodeInput.dataset.input = text;
           addText(nodeInput,text);
@@ -2495,11 +2498,12 @@ document.addEventListener('DOMContentLoaded', async function(e) {
             d3.select(nodeInput .select).classed("selected", true );
           } else {
             const nodeOutput = addMessage(false);
+            console.log("gpt 모델로 송신");
             openaiSendMessage(nodeOutput,m);
           }
         } else if ( cfg('ai-model').startsWith("gemini") ) {
           const m = geminiBuildMessage();
-
+          console.log("gemini 모델 사용");
           const nodeInput = addMessage(true);
           nodeInput.dataset.input = text;
           addText(nodeInput,text);
