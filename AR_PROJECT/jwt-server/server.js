@@ -75,7 +75,7 @@ app.post('/api/generate', async (req, res) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("llama3 수신완료")
+      console.log("llama3 응답")
       res.json(data);
     } else {
       res.status(response.status).send(response.statusText);
