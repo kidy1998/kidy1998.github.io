@@ -5,7 +5,14 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const bodyParser = require('body-parser'); // body-parser 추가
 const app = express();
-const port = 5556;
+const fetch = require('node-fetch');
+
+
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
 
 // 환경 변수에서 비밀 키를 로드
 const secretKey = 'kidy1998';
@@ -52,7 +59,32 @@ app.post('/openai/v1/moderations', async (req, res) => {
   res.json(data);
 });
 
+
+
+// Llama3 API 프록시 라우트 추가
+app.post('/api/generate', async (req, res) => {
+  try {
+    const response = await fetch('http://3.37.34.129:11434/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(req.body)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      res.json(data);
+    } else {
+      res.status(response.status).send(response.statusText);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // 서버 시작
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
