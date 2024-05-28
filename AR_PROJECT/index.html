@@ -470,24 +470,30 @@ header .menuList li a {
 
 <script>
    document.addEventListener("DOMContentLoaded", function() {
-      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    var constraints = { audio: false, video: true };
 
-      var constraints = { audio: false, video: true };
+    var video = document.getElementById("videoInput");
+    document.getElementById("videoInput").style.height = String(window.innerHeight) + "px";
 
-      var video = document.getElementById("videoInput");
-      document.getElementById("videoInput").style.height = String(window.innerHeight) + "px";
-      
-      function successCallback(stream) {
+    function successCallback(stream) {
         video.srcObject = stream;
         video.play();
-      }
+    }
 
-      function errorCallback(error) {
+    function errorCallback(error) {
         console.log(error);
-      }
-      
-      navigator.getUserMedia(constraints, successCallback, errorCallback);
-    });
+    }
+
+    // Check if the new API is available
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(successCallback)
+            .catch(errorCallback);
+    } else {
+        console.log("getUserMedia not supported in this browser.");
+    }
+});
+
 </script>
 <script nomodule>alert("You browser doesn't seem to support modules. Use a modern browser to run Enterprise.");</script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
