@@ -64,8 +64,9 @@ app.post('/openai/v1/moderations', async (req, res) => {
 
 // Llama3 API 프록시 라우트 추가
 app.post('/api/generate', async (req, res) => {
+  console.log("llama3 send ok")
   try {
-    const response = await fetch('https://kidy1998.github.io/api/generate', {
+    const response = await fetch('http://3.37.34.129:3000/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -75,7 +76,7 @@ app.post('/api/generate', async (req, res) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("llama3 응답")
+      console.log("llama3 response ok")
       res.json(data);
     } else {
       res.status(response.status).send(response.statusText);
