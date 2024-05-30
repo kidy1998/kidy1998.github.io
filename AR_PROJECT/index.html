@@ -1441,7 +1441,7 @@ async function openaiSendMessage(node, msgs) {
     let fn;
 
     console.log("index => server.js")
-    const res = await fetch('api/generate', {
+    const res = await fetch('/api/generate', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
