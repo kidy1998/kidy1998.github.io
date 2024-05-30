@@ -690,7 +690,7 @@ async function elevenSpeak(s,node=null) {
 
     // Build the URL
     let url = elevenTTSProxy[0];
-    url += await jwtGet();
+    //url += await jwtGet();
     url += elevenTTSProxy[1];
     url += cfg('voice-eleven-id');
     url += elevenTTSProxy[2];
