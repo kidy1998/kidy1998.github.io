@@ -65,7 +65,7 @@ app.post('/openai/v1/moderations', async (req, res) => {
 // Llama3 API 프록시 라우트 추가
 app.post('/api/generate', async (req, res) => {
   try {
-    const response = await fetch('http://3.37.34.129:3000/api/generate', {
+    const response = await fetch('https://kidy1998.github.io/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
