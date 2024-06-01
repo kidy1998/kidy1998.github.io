@@ -1439,12 +1439,14 @@ async function openaiSendMessage(node, msgs) {
     node.dataset.output = '';
     let tts;
     let fn;
-
+    
+    const OPENAI_API_KEY = 'sk-proj-bDcYXpo7AURxgJpUzXm2T3BlbkFJCOXwdqM825bIkl6mLSog';
     console.log("index => server.js")
     const res = await fetch('/api/generate', {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify(body),
       signal
