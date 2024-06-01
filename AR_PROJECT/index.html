@@ -1405,7 +1405,7 @@ async function openaiModerateMessage(msgs) {
   return flag;
 }
 
-//LLAMA3 테스트
+// chatgpt 테스트
 async function openaiSendMessage(node, msgs) {
   console.log("node : ", node);
   console.log("msgs : ", msgs);
@@ -1430,8 +1430,8 @@ async function openaiSendMessage(node, msgs) {
 
   try {
     const body = {
-      model: "llama3",
-      prompt: msgs.map(x => x.content).join('\n'),
+      model: "gpt-3.5-turbo",
+      messages: msgs.map(x => ({ role: "user", content: x.content })),
       temperature: cfg('ai-openai-temperature'),
       max_tokens: cfg('ai-openai-output')
     };
@@ -1440,7 +1440,7 @@ async function openaiSendMessage(node, msgs) {
     let tts;
     let fn;
 
-    const OPENAI_API_KEY = 'sk-proj-1T8aNezfX6UeC39ACHKET3BlbkFJuqzDPRRqGrs05FNOlQTD';
+    const OPENAI_API_KEY = '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';
     console.log("index => server.js")
     const res = await fetch('/api/generate', {
       method: "POST",
@@ -1453,23 +1453,10 @@ async function openaiSendMessage(node, msgs) {
     });
 
     if (res.ok) {
-      const text = await res.text();
+      const data = await res.json();
       console.log('응답 완료');
 
-      // 여러 개의 JSON 객체를 줄 단위로 분리
-      const lines = text.split('\n').filter(line => line.trim() !== '');
-      let fullResponse = '';
-
-      for (const line of lines) {
-        try {
-          const data = JSON.parse(line);
-          fullResponse += data.response;
-        } catch (jsonError) {
-          console.error('JSON parsing error:', jsonError, 'Line:', line);
-          node.dataset.output = `Error: Invalid JSON response.`;
-          return;
-        }
-      }
+      const fullResponse = data.choices.map(choice => choice.message.content).join('\n');
 
       node.dataset.output = fullResponse;
       addText(node, fullResponse);
@@ -1486,11 +1473,8 @@ async function openaiSendMessage(node, msgs) {
         }
       }
 
-      // let flag = await openaiModerateMessage([{ content: node.dataset.output, n: node }]);
-      console.log("응답(llama3) : ", fullResponse);
-      if (flag) {
-        // 추가 로직 (예: 음성 출력)
-      }
+      console.log("응답(ChatGPT) : ", fullResponse);
+      // 추가 로직 (예: 음성 출력)
     } else {
       const errorText = await res.text();
       console.error(`Error: ${res.status} ${res.statusText} - ${errorText}`);
@@ -1512,6 +1496,7 @@ async function openaiSendMessage(node, msgs) {
     });
   }
 }
+
 
 
 
