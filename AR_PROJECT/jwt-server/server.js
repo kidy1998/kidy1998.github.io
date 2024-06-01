@@ -9,6 +9,9 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const OPENAI_API_KEY = 'sk-proj-bDcYXpo7AURxgJpUzXm2T3BlbkFJCOXwdqM825bIkl6mLSog';
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -66,13 +69,15 @@ app.post('/openai/v1/moderations', async (req, res) => {
 app.post('/api/generate', async (req, res) => {
   console.log("llama3 send ok")
   try {
-    const response = await fetch('http://3.37.34.129:3000/api/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(req.body)
-    });
+    const response = await fetch('https://api.openai.com/v1/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify(req.body)
+  });
+
 
     if (response.ok) {
       const data = await response.json();
