@@ -9,7 +9,7 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = 'sk-proj-1T8aNezfX6UeC39ACHKET3BlbkFJuqzDPRRqGrs05FNOlQTD';
 
 
 app.use(cors());
