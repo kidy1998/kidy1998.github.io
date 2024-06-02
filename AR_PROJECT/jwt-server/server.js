@@ -1,20 +1,24 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import bodyParser from 'body-parser';
+import fetch from 'node-fetch';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+console.log("OPENAI_API_KEY", OPENAI_API_KEY)
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(new URL('.', import.meta.url).pathname, '..')));
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'main.html'));
