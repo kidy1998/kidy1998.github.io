@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
