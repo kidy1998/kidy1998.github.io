@@ -2936,6 +2936,7 @@ document.addEventListener('DOMContentLoaded', async function(e) {
       try {
         await head.showAvatar( o, progressUpdate );
         d3.select("[data-camera-frame].selected").dispatch('click');
+        console.log("avatar load url : ",url)
       } catch(error) {
         errorShow(error);
       }
@@ -3011,6 +3012,7 @@ document.addEventListener('DOMContentLoaded', async function(e) {
       d3.select("#video").node().load();
       const image = cfg('view-url');
       d3.select("#view").style("background-image","url(" + image + ")" );
+      console.log("CFG.sessions[CFG.session].view.image", CFG.sessions[CFG.session].view.image)
     } else {
       CFG.sessions[CFG.session].view.image = view;
       d3.select("#main")
