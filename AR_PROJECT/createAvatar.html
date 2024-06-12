@@ -57,7 +57,6 @@
     // Get avatar GLB URL
     if (json.eventName === 'v1.avatar.exported') {
       console.log(`Avatar URL: ${json.data.url}`);
-      document.getElementById('avatarUrl').innerHTML = `Avatar URL: ${json.data.url}`;
       document.getElementById('frame').hidden = true;
     }
 
