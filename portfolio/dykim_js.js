@@ -23,7 +23,7 @@
                     message = 'AR_아바타 생성 사이트' ;
                     break;
                 case 'github':
-                    message = 'GitHub 프로필 링크';
+                    message = 'GitHub 링크';
                     break;
                 case 'velog':
                     message = 'Velog 링크';
