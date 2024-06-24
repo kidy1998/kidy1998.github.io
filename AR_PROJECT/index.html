@@ -534,7 +534,9 @@ const microsoftTTSProxy = [
   "/cognitiveservices/websocket/v1"
 ];
 
-const OPENAI_API_KEY = 'sk-proj-x0BVGBgx3JC3kDlNVCJIT3BlbkFJt72OlsjQqlyJbxuewuxl';
+// const OPENAI_API_KEY = 'sk-proj-x0BVGBgx3JC3kDlNVCJIT3BlbkFJt72OlsjQqlyJbxuewuxl';
+const OPENAI_API_KEY = 'your api key'
+
 
 // I18n internationalization
 const i18n = {
@@ -1442,13 +1444,13 @@ async function openaiSendMessage(node, msgs) {
    
     console.log("index => server.js")
     const res = await fetch('/api/generate', {
-      // method: "POST",
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   'Authorization': `Bearer ${OPENAI_API_KEY}`
-      // },
-      // body: JSON.stringify(body),
-      // signal
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify(body),
+      signal
     });
 
     if (res.ok) {
