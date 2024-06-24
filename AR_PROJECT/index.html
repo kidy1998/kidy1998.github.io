@@ -1442,13 +1442,13 @@ async function openaiSendMessage(node, msgs) {
    
     console.log("index => server.js")
     const res = await fetch('/api/generate', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify(body),
-      signal
+      // method: "POST",
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Authorization': `Bearer ${OPENAI_API_KEY}`
+      // },
+      // body: JSON.stringify(body),
+      // signal
     });
 
     if (res.ok) {
