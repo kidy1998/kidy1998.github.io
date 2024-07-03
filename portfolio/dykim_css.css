@@ -228,3 +228,116 @@ span {
 
 
 
+/* Tablets and larger smartphones */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main {
+        margin-left: 200px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    #intro {
+        padding: 3%;
+    }
+
+    #intro_container {
+        font-size: 1.5rem;
+    }
+
+    #introduction {
+        padding-top: 15%;
+        padding-left: 20%;
+    }
+
+    #aboutMe {
+        padding-left: 10%;
+    }
+
+    #aboutMe ul {
+        width: 90%;
+    }
+
+    #aboutMe ul li {
+        width: 100%;
+    }
+
+    #skills {
+        padding-left: 8%;
+    }
+
+    .skill {
+        flex-basis: 40%;
+    }
+
+    #project {
+        padding-left: 5%;
+    }
+
+    .project {
+        flex-basis: 80%;
+        height: 200px;
+    }
+}
+
+/* Smartphones */
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 150px;
+    }
+
+    .main {
+        margin-left: 150px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    #intro {
+        padding: 2%;
+    }
+
+    #intro_container {
+        font-size: 1rem;
+    }
+
+    #introduction {
+        padding-top: 10%;
+        padding-left: 15%;
+    }
+
+    #aboutMe {
+        padding-left: 5%;
+    }
+
+    #aboutMe ul {
+        width: 100%;
+    }
+
+    #aboutMe ul li {
+        width: 100%;
+    }
+
+    #skills {
+        padding-left: 5%;
+    }
+
+    .skill {
+        flex-basis: 100%;
+    }
+
+    #project {
+        padding-left: 2%;
+    }
+
+    .project {
+        flex-basis: 100%;
+        height: 150px;
+    }
+}
