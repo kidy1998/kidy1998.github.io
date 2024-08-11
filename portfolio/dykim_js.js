@@ -14,13 +14,13 @@
             // name 속성 값에 따라 메시지 변경
             switch (name) {
                 case 'project1':
-                    message = '유기견 보호소 소개 사이트';
+                    message = '유기견 보호소 소개';
                     break;
                 case 'project2':
-                    message = '영화,영화관 소개 사이트';
+                    message = '영화,영화관 소개';
                     break;
                 case 'project3' :
-                    message = 'AR_아바타 생성 사이트' ;
+                    message = 'AR_아바타 생성' ;
                     break;
                 case 'github':
                     message = 'GitHub 링크';
@@ -40,7 +40,7 @@
             tooltip.style.height = `${div.offsetHeight * 0.9}px`;
             tooltip.style.top = `${div.offsetTop + (div.offsetHeight - tooltip.offsetHeight) / 20}px`; // 세로 중앙 정렬
             tooltip.style.left = `${div.offsetLeft + (div.offsetWidth - tooltip.offsetWidth) / 20}px`; // 가로 중앙 정렬
-            tooltip.style.backgroundColor = 'rgba(0, 0, 15, 0.6)';
+            tooltip.style.backgroundColor = 'rgba(0, 0, 12, 0.5)';
             tooltip.style.color = '#fff';
             tooltip.style.padding = '5px';
             tooltip.style.borderRadius = '5px';
@@ -53,27 +53,48 @@
             div.appendChild(tooltip); // div 내에 툴팁을 추가.
 
             // 링크를 생성합니다.
-            const linkElement = document.createElement('a');
+            const gitElement = document.createElement('a');
+            var linkElement;
 
             if (name === 'project1') {
-                linkElement.href = 'https://github.com/kidy1998/Final_Project_2023_12'; 
+                gitElement.href = 'https://github.com/kidy1998/Final_Project_2023_12'; 
+                linkElement = document.createElement('a');
+                linkElement.href = 'project/mungFriend.html';
             } else if (name === 'project2') {
-                linkElement.href = 'https://github.com/kidy1998/Semi_Project_2023_09'; 
+                gitElement.href = 'https://github.com/kidy1998/Semi_Project_2023_09';
+                linkElement = document.createElement('a');
+                linkElement.href = 'project/movieInsight.html';
             } else if (name === 'project3') {
-                linkElement.href = 'https://kidy1998.github.io/AR_PROJECT/main.html'; 
+                gitElement.href = 'https://kidy1998.github.io/AR_PROJECT/main.html'; 
+                
             } else if (name === 'github') {
-                linkElement.href = 'https://github.com/kidy1998?tab=repositories'; 
+                gitElement.href = 'https://github.com/kidy1998?tab=repositories'; 
             } else if (name === 'velog') {
-                linkElement.href = 'https://velog.io/@zzangkidy/posts'; 
+                gitElement.href = 'https://velog.io/@zzangkidy/posts'; 
             }
-            linkElement.textContent = 'Link';
-            linkElement.classList.add('link'); //클래스 추가
-            linkElement.target = '_blank';
 
-            for (let i = 0; i < 5; i++) {
+            gitElement.textContent = 'Link';
+            gitElement.classList.add('link'); //클래스 추가
+            gitElement.target = '_blank';
+
+          
+
+
+            for (let i = 0; i < 2; i++) {
                 tooltip.appendChild(document.createElement('br'));
             }
-            tooltip.appendChild(linkElement); // 툴팁 내에 링크 추가
+
+            if(linkElement){    
+                
+                linkElement.textContent = '상세보기';
+                linkElement.classList.add('link');
+                linkElement.target = '_blank';
+                tooltip.append(linkElement);
+            }
+           
+            tooltip.appendChild(document.createElement('br'));
+            tooltip.appendChild(document.createElement('br'));
+            tooltip.append(gitElement); // 툴팁 내에 링크 추가
         });
 
         div.addEventListener('mouseleave', function() {
