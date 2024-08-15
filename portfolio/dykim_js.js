@@ -66,6 +66,8 @@
                 linkElement.href = 'project/movieInsight.html';
             } else if (name === 'project3') {
                 gitElement.href = 'https://kidy1998.github.io/AR_PROJECT/main.html'; 
+                linkElement = document.createElement('a');
+                linkElement.href = 'project/webAvatar.html';
                 
             } else if (name === 'github') {
                 gitElement.href = 'https://github.com/kidy1998?tab=repositories'; 
@@ -116,40 +118,38 @@
 // 반복해서 타이핑할 텍스트
 const text = "백엔드 개발자를 꿈꾸는 김도연입니다.";
 
-  
-  
-  // 타이핑 효과를 주기 위한 함수
-  function typeWriter(element, text, index) {
+// 타이핑 효과를 주기 위한 함수
+function typeWriter(element, text, index) {
     if (index < text.length) {
-      // 현재 인덱스까지의 텍스트를 출력
-      element.innerHTML += text.charAt(index);
-      // 다음 글자로 이동하기 위해 setTimeout을 사용하여 재귀 호출
-      setTimeout(() => typeWriter(element, text, index + 1), 100); // 100ms 간격으로 한 글자씩 출력
+        // 현재 인덱스까지의 텍스트를 출력
+        element.innerHTML += text.charAt(index);
+        // 다음 글자로 이동하기 위해 setTimeout을 사용하여 재귀 호출
+        setTimeout(() => typeWriter(element, text, index + 1), 100); // 100ms 간격으로 한 글자씩 출력
     } else {
-      // 한 문장을 모두 출력한 후에 다음 문장으로 넘어감
-      setTimeout(() => eraseText(element, text), 1000); // 1초 대기 후에 텍스트 지우는 함수 호출
+        // 한 문장을 모두 출력한 후에 다음 문장으로 넘어감
+        setTimeout(() => eraseText(element, text), 1000); // 1초 대기 후에 텍스트 지우는 함수 호출
     }
-  }
-  
-  // 텍스트를 지우는 함수
-  function eraseText(element, text) {
+}
+
+// 텍스트를 지우는 함수
+function eraseText(element, text) {
     if (element.innerHTML.length > 0) {
-      // 텍스트를 한 글자씩 지우기
-      element.innerHTML = text.substring(0, element.innerHTML.length - 1);
-      // 다음 글자를 지우기 위해 setTimeout을 사용하여 재귀 호출
-      setTimeout(() => eraseText(element, text), 100); // 100ms 간격으로 한 글자씩 지우기
+        // 텍스트를 한 글자씩 지우기
+        element.innerHTML = text.substring(0, element.innerHTML.length - 1);
+        // 다음 글자를 지우기 위해 setTimeout을 사용하여 재귀 호출
+        setTimeout(() => eraseText(element, text), 100); // 100ms 간격으로 한 글자씩 지우기
     } else {
-      // 모든 텍스트를 지우고 다음 문장으로 넘어감
-      setTimeout(() => typeWriter(element, text, 0), 1000); // 1초 대기 후에 다음 문장 출력 함수 호출
+        // 모든 텍스트를 지우고 다음 문장으로 넘어감
+        setTimeout(() => typeWriter(element, text, 0), 1000); // 1초 대기 후에 다음 문장 출력 함수 호출
     }
-  }
-  
-  // 타이핑 효과를 적용할 요소 선택
-  const titleElement = document.getElementById("introduction");
-  titleElement.style.margin = 0;
-  
-  // 타이핑 효과 적용
-  typeWriter(titleElement, text, 0);
+}
+
+// 타이핑 효과를 적용할 요소 선택
+const titleElement = document.getElementById("introduction");
+titleElement.style.margin = 0;
+
+// 타이핑 효과 적용
+typeWriter(titleElement, text, 0);
   
 
 
