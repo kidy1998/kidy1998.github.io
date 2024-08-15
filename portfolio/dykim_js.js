@@ -63,7 +63,7 @@
             } else if (name === 'project2') {
                 gitElement.href = 'https://github.com/kidy1998/Semi_Project_2023_09';
                 linkElement = document.createElement('a');
-                linkElement.href = 'project/movieInsight.html';
+                linkElement.href = 'movieInsight.html';
             } else if (name === 'project3') {
                 gitElement.href = 'https://kidy1998.github.io/AR_PROJECT/main.html'; 
                 linkElement = document.createElement('a');
